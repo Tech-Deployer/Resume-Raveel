@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muhammad Raveel | Developer & IT Specialist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      /* Dark Cyber Palette */
+      --bg-dark: #020612;
+      --bg-card: rgba(79, 172, 254, 0.15);
+      --card-border: rgba(0, 242, 254, 0.3);
+      
+      /* Neon Cyan Accents */
+      --cyan-primary: #00f2fe;
+      --cyan-secondary: #4facfe;
+      --cyan-glow: rgba(0, 242, 254, 0.5);
+      --gradient-cyan: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+      
+      /* Typography */
+      --text-main: #f0f6fc;
+      --text-muted: #94a3b8;
+      --nav-bg: rgba(79, 172, 254, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.7;
+      padding-top: 100px;
+      position: relative;
+      overflow-x: hidden;
+
+      /* Tech Blue and Cyan Dynamic Radial Gradient Background */
+      background-image: 
+        radial-gradient(circle at 20% 20%, rgba(0, 0, 0, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(79, 172, 254, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(2, 6, 18, 0.85) 0%, rgba(2, 6, 18, 0.98) 100%);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    /* Animated Neon Scan Line Grid Overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 242, 254, 0),
+        rgba(0, 242, 254, 0.03) 50%,
+        rgba(0, 242, 254, 0)
+      );
+      background-size: 100% 8px;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Fixed Tech Navigation Bar */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: var(--nav-bg);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--card-border);
+      z-index: 1000;
+      padding: 16px 0;
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: var(--text-main);
+      letter-spacing: -0.5px;
+      text-decoration: none;
+    }
+
+    .logo span {
+      background: var(--gradient-cyan);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Hexagonal Toggle Button */
+    .menu-toggle {
+      background: rgba(0, 242, 254, 0.1);
+      border: 1px solid var(--cyan-primary);
+      clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 44px;
+      height: 40px;
+      padding: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .menu-toggle:hover {
+      box-shadow: 0 0 15px var(--cyan-glow);
+      background: rgba(0, 242, 254, 0.2);
+    }
+
+    .menu-toggle span {
+      display: block;
+      height: 2px;
+      width: 100%;
+      background: var(--cyan-primary);
+      border-radius: 2px;
+    }
+
+    /* Side Panel Navigation */
+    .side-panel {
+      position: fixed;
+      top: 0;
+      right: -320px;
+      width: 300px;
+      height: 100vh;
+      background: rgba(8, 20, 48, 0.96);
+      backdrop-filter: blur(20px);
+      border-left: 2px solid var(--cyan-primary);
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.8);
+      z-index: 1100;
+      transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      padding: 90px 30px 30px 30px;
+    }
+
+    .side-panel.open {
+      right: 0;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: var(--cyan-primary);
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    .side-nav-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .side-nav-links a {
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 1.05rem;
+      font-weight: 600;
+      display: block;
+      padding: 12px 16px;
+      clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+      background: rgba(0, 242, 254, 0.05);
+      border: 1px solid var(--card-border);
+      transition: all 0.3s;
+    }
+
+    .side-nav-links a:hover {
+      color: var(--cyan-primary);
+      background: rgba(0, 242, 254, 0.15);
+      transform: translateX(8px);
+    }
+
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(3, 9, 30, 0.7);
+      backdrop-filter: blur(5px);
+      z-index: 1050;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .menu-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Cut-Corner Glassmorphism Card */
+    .tech-shape-card {
+      background: var(--bg-card);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(16px);
+      padding: 40px;
+      margin-bottom: 36px;
+      clip-path: polygon(
+        0 20px, 
+        20px 0, 
+        100% 0, 
+        100% calc(100% - 20px), 
+        calc(100% - 20px) 100%, 
+        0 100%
+      );
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+      position: relative;
+    }
+
+    .tech-shape-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--gradient-cyan);
+    }
+
+    /* Hero Header Area */
+    .hero-header {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      margin-bottom: 28px;
+    }
+
+    .profile-avatar-container {
+      position: relative;
+      flex-shrink: 0;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+    }
+
+    .profile-avatar {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 50%;
+      border: 2px solid var(--cyan-primary);
+      background-color: rgba(0, 242, 254, 0.1);
+      box-shadow: 0 0 20px var(--cyan-glow);
+      transition: transform 0.3s ease, filter 0.3s ease;
+      display: block;
+    }
+
+    .profile-avatar:hover {
+      transform: scale(1.03);
+      filter: brightness(1.1);
+    }
+
+    .profile-avatar-container::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: var(--gradient-cyan);
+      z-index: -1;
+      opacity: 0.6;
+    }
+
+    .hero-info {
+      flex-grow: 1;
+    }
+
+    .hero-info h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 6px;
+      line-height: 1.1;
+    }
+
+    .hero-info h2 {
+      font-size: 1.25rem;
+      background: var(--gradient-cyan);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .hero-tagline {
+      text-align: justify;
+      text-justify: inter-word;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    /* Contact Buttons */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .contact-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: rgba(3, 9, 30, 0.85);
+      border: 1px solid var(--card-border);
+      padding: 12px 18px;
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
+      transition: all 0.3s ease;
+    }
+
+    .contact-btn:hover {
+      background: rgba(0, 242, 254, 0.2);
+      color: var(--cyan-primary);
+      border-color: var(--cyan-primary);
+      box-shadow: 0 0 15px var(--cyan-glow);
+      transform: translateY(-2px);
+    }
+
+    .contact-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    p {
+      text-align: justify;
+      text-justify: inter-word;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Section Header */
+    .section-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title::before {
+      content: '';
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background: var(--cyan-primary);
+      transform: rotate(45deg);
+      box-shadow: 0 0 10px var(--cyan-primary);
+    }
+
+    /* Skills Grid */
+    .skills-image-grid, .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .skill-feature-card {
+      background: rgba(3, 9, 30, 0.7);
+      border: 1px solid var(--card-border);
+      clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
+      transition: all 0.3s ease;
+    }
+
+    .skill-feature-card:hover {
+      border-color: var(--cyan-primary);
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px var(--cyan-glow);
+    }
+
+    .skill-feature-card img {
+      width: 100%;
+      height: 130px;
+      object-fit: cover;
+      filter: brightness(0.85);
+    }
+
+    .skill-feature-content {
+      padding: 16px;
+    }
+
+    .skill-feature-content h4 {
+      font-size: 0.98rem;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .skill-feature-content p {
+      font-size: 0.82rem;
+    }
+
+    /* Education Cards */
+    .edu-card {
+      background: rgba(3, 9, 30, 0.7);
+      border: 1px solid var(--card-border);
+      padding: 24px;
+      clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+      transition: all 0.3s ease;
+    }
+
+    .edu-card:hover {
+      border-color: var(--cyan-primary);
+      transform: translateY(-4px);
+    }
+
+    .edu-card h4 {
+      font-size: 1.05rem;
+      color: var(--cyan-primary);
+      margin-bottom: 6px;
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 20px;
+      border-left: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 32px;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .role-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .company-name {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .date-badge {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 4px 12px;
+      font-size: 0.75rem;
+      clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+    }
+
+    .timeline-body ul {
+      list-style-type: none;
+    }
+
+    .timeline-body li {
+      margin-bottom: 8px;
+      position: relative;
+      padding-left: 20px;
+      text-align: justify;
+      text-justify: inter-word;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .timeline-body li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--text-muted);
+      font-size: 1rem;
+      top: -2px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 0;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--card-border);
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .hero-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+      }
+      .profile-avatar-container {
+        width: 120px;
+        height: 120px;
+      }
+      .hero-info h1 { font-size: 2.2rem; }
+      .hero-tagline { text-align: center; }
+      .tech-shape-card { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="nav-container">
+      <a href="#about" class="logo">Muhammad<span>Raveel</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Side Navigation Panel -->
+  <aside class="side-panel" id="sidePanel">
+    <button class="close-btn" id="closeBtn">&times;</button>
+    <ul class="side-nav-links">
+      <li><a href="#about" class="nav-link-item">About</a></li>
+      <li><a href="#skills" class="nav-link-item">Skills</a></li>
+      <li><a href="#experience" class="nav-link-item">Experience</a></li>
+      <li><a href="#education" class="nav-link-item">Education</a></li>
+    </ul>
+  </aside>
+
+  <div class="menu-overlay" id="menuOverlay"></div>
+
+  <main class="container">
+
+    <!-- Hero Section -->
+    <section class="tech-shape-card" id="about">
+      <div class="hero-header">
+        
+        <div class="profile-avatar-container">
+          <img src="C:\Users\Malik\Desktop\Portfolio\Raveel picture.jpg"
+            alt="Muhammad Raveel Profile Picture" 
+            class="profile-avatar"
+            id="userProfileImg"
+          >
+        </div>
+
+        <div class="hero-info">
+          <h1>Muhammad Raveel</h1>
+          <h2>Full-Stack Developer & IT Specialist</h2>
+          <p class="hero-tagline">
+            Crafting intuitive UI/UX, modern apps, and resilient network infrastructures with precision.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="contact-grid">
+        <a href="mailto:raveel.edu.pk@gmail.com" class="contact-btn" title="Compose Email">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          <span>Email</span>
+        </a>
+
+        <a href="https://wa.me/923091583008" target="_blank" rel="noopener noreferrer" class="contact-btn" title="Chat on WhatsApp">
+          <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm5.82 14.12c-.25.7-.84 1.25-1.57 1.51-.72.25-1.68.36-2.73-.08-2.31-.96-4.22-2.73-5.74-4.88-.63-.89-1.15-1.89-1.38-2.92-.23-1.03.04-2.02.53-2.64.22-.28.53-.45.87-.45.18 0 .36.04.52.12.35.17.8.98.92 1.22.12.24.16.44.05.65-.11.21-.22.36-.39.54-.17.18-.32.32-.17.61.32.62.86 1.35 1.52 1.95.84.76 1.69 1.2 2.38 1.48.28.11.51.05.68-.13.23-.25.53-.61.76-.92.17-.22.38-.28.61-.19.23.09 1.48.7 1.73.82.25.12.42.18.48.29.06.11.06.66-.19 1.36z"/></svg>
+          <span>WhatsApp</span>
+        </a>
+
+        <a href="https://www.google.com/maps/search/?api=1&query=Sector+I-14%2F1+Islamabad+Pakistan" target="_blank" rel="noopener noreferrer" class="contact-btn" title="Open Map Location">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          <span>Location</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Professional Profile Section -->
+    <section class="tech-shape-card">
+      <h3 class="section-title">Professional Profile</h3>
+      <p>
+        Versatile IT Specialist, Web & App Developer, and Portfolio Designer with expertise in network maintenance, web interface architecture, hardware/software troubleshooting, and security surveillance infrastructure. Proven track record in configuring biometric devices, integrating complex audio-visual networks, and designing interactive web experiences. Combines diagnostic capabilities with creative front-end execution to build high-performance, secure digital environments.
+      </p>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="tech-shape-card" id="skills">
+      <h3 class="section-title">Skills & Specializations</h3>
+      
+      <div class="skills-image-grid">
+        <div class="skill-feature-card">
+          <img src="C:\Users\Malik\Desktop\Portfolio\Web Development Service.jpg?auto=format&fit=crop&w=600&q=80" alt="Web Development">
+          <div class="skill-feature-content">
+            <h4>Web Development</h4>
+            <p>Building high-speed, modern, and responsive web platforms.</p>
+          </div>
+        </div>
+
+        <div class="skill-feature-card">
+          <img src="C:\Users\Malik\Desktop\Portfolio\System Optimization Service.jpg?auto=format&fit=crop&w=600&q=80" alt="Mobile App Development">
+          <div class="skill-feature-content">
+            <h4>Mobile App Development</h4>
+            <p>Engineering cross-platform apps for mobile ecosystems.</p>
+          </div>
+        </div>
+
+        <div class="skill-feature-card">
+          <img src="C:\Users\Malik\Desktop\Portfolio\Resume Building Service.jpg?auto=format&fit=crop&w=600&q=80" alt="Portfolio Design">
+          <div class="skill-feature-content">
+            <h4>Portfolio & UI/UX Design</h4>
+            <p>Creating dark-themed UI layouts and visual portfolios.</p>
+          </div>
+        </div>
+
+        <div class="skill-feature-card">
+          <img src="C:\Users\Malik\Desktop\Portfolio\Window Installation Service.jpg?auto=format&fit=crop&w=600&q=80" alt="Windows OS">
+          <div class="skill-feature-content">
+            <h4>Windows OS Configuration</h4>
+            <p>Configuring operating systems and user environments.</p>
+          </div>
+        </div>
+
+        <div class="skill-feature-card">
+          <img src="C:\Users\Malik\Desktop\Portfolio\Software Installation Service.jpg?auto=format&fit=crop&w=600&q=80" alt="Software Troubleshooting">
+          <div class="skill-feature-content">
+            <h4>Software Troubleshooting</h4>
+            <p>Resolving system errors, bugs, and software conflicts.</p>
+          </div>
+        </div>
+
+        <div class="skill-feature-card">
+          <img src="C:\Users\Malik\Desktop\Portfolio\Network Setup Service.jpg?auto=format&fit=crop&w=600&q=80" alt="Network Repair">
+          <div class="skill-feature-content">
+            <h4>Network Repair & Support</h4>
+            <p>Monitoring routers, switches, and system connectivity.</p>
+          </div>
+        </div>
+
+        <div class="skill-feature-card">
+          <img src="C:\Users\Malik\Desktop\Portfolio\Hardware Installation Service.jpg?auto=format&fit=crop&w=600&q=80" alt="PC Hardware Components">
+          <div class="skill-feature-content">
+            <h4>Hardware Maintenance</h4>
+            <p>Diagnosing PC components, upgrades, and physical repairs.</p>
+          </div>
+        </div>
+
+        <div class="skill-feature-card">
+          <img src="C:\Users\Malik\Desktop\Portfolio\CCTV Installation Service.jpg?auto=format&fit=crop&w=600&q=80" alt="CCTV Systems">
+          <div class="skill-feature-content">
+            <h4>CCTV Systems & Control</h4>
+            <p>Managing cybersecurity surveillance rooms, multi-screen monitoring, and NVR setups.</p>
+          </div>
+        </div>
+
+        <div class="skill-feature-card">
+          <img src="C:\Users\Malik\Desktop\Portfolio\Multimedia Installation Service.jpg?auto=format&fit=crop&w=600&q=80" alt="Audio-Visual Integration">
+          <div class="skill-feature-content">
+            <h4>Audio-Visual & Sound Systems</h4>
+            <p>Integrating professional audio mixers, sound consoles, and AV equipment.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Work Experience Section -->
+    <section class="tech-shape-card" id="experience">
+      <h3 class="section-title">Work Experience</h3>
+      
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-header">
+            <span class="role-title">Network Support Assistant</span>
+            <span class="date-badge mono">2024 – Present</span>
+          </div>
+          <div class="company-name">Rawalpindi Women University</div>
+          <div class="timeline-body">
+            <ul>
+              <li>Resolved hardware, software, and network configuration issues efficiently.</li>
+              <li>Installed and configured operating systems, software suites, and network peripherals.</li>
+              <li>Provided technical IT support to university faculty and administrative teams.</li>
+              <li>Monitored network reliability and maintained system health across departments.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-header">
+            <span class="role-title">Web Developer</span>
+            <span class="date-badge mono">2022 – Present</span>
+          </div>
+          <div class="company-name">Self-Employed (Remote / Freelance)</div>
+          <div class="timeline-body">
+            <ul>
+              <li>Designed and built custom, fast-loading, and responsive websites for diverse clients.</li>
+              <li>Developed clean front-end web interfaces using HTML5, CSS3, and modern JavaScript techniques.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-header">
+            <span class="role-title">Mobile App Developer</span>
+            <span class="date-badge mono">2022 – Present</span>
+          </div>
+          <div class="company-name">Self-Employed (Remote / Freelance)</div>
+          <div class="timeline-body">
+            <ul>
+              <li>Engineered cross-platform mobile application concepts with a focus on UI/UX responsiveness.</li>
+              <li>Integrated client APIs and ensured smooth application deployment across testing devices.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-header">
+            <span class="role-title">Portfolio Designer</span>
+            <span class="date-badge mono">2022 – Present</span>
+          </div>
+          <div class="company-name">Self-Employed (Remote / Freelance)</div>
+          <div class="timeline-body">
+            <ul>
+              <li>Created visually stunning interactive tech portfolios for developers and professionals.</li>
+              <li>Utilized futuristic dark themes, tech cyan highlights, and clean modern grid systems.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-header">
+            <span class="role-title">CCTV Supervisor</span>
+            <span class="date-badge mono">2023 – 2024</span>
+          </div>
+          <div class="company-name">Zee Communication</div>
+          <div class="timeline-body">
+            <ul>
+              <li>Supervised daily operational control room tasks for surveillance security systems.</li>
+              <li>Monitored real-time live video streams to enforce site security standard operating procedures.</li>
+              <li>Diagnosed, maintained, and upgraded security cameras, DVR, and NVR setups.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="tech-shape-card" id="education">
+      <h3 class="section-title">Education & Diplomas</h3>
+      
+      <div class="edu-grid">
+        <div class="edu-card">
+          <h4>Diploma in IT & Hardware</h4>
+          <p>SDA – College of Engineering Tech, Islamabad</p>
+        </div>
+
+        <div class="edu-card">
+          <h4>Diploma in Basic IT & Networking</h4>
+          <p>NTTC – School of International Studies, Islamabad</p>
+        </div>
+
+        <div class="edu-card">
+          <h4>DAE – Electrical Engineering</h4>
+          <p>RED-C Institute of Engineering & Tech, Islamabad</p>
+        </div>
+
+        <div class="edu-card">
+          <h4>Matriculation (Science-Computer)</h4>
+          <p>Federal Model Secondary School, Rawalpindi</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="tech-shape-card">
+      <h3 class="section-title">Awards & Organizational Certificates</h3>
+      <div class="timeline-body">
+        <ul>
+          <li><strong>Best Scientific Project Award (Electrical Engineering)</strong> – Rawalpindi Art Council</li>
+          <li>Certificate of Organization – 1st International Conference of Sciences & Social Sciences (RWU)</li>
+          <li>Certificate of Organization – 2nd International Conference of Sciences & Social Sciences (RWU)</li>
+          <li>Certificate of Organization – 3rd International Conference of Sciences & Social Sciences (RWU)</li>
+          <li>Certificate of Organization – 4th International Conference of Sciences & Social Sciences (RWU)</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      <p>© Muhammad Raveel • Full-Stack Developer & IT Specialist</p>
+    </footer>
+
+  </main>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const sidePanel = document.getElementById('sidePanel');
+    const closeBtn = document.getElementById('closeBtn');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const navLinkItems = document.querySelectorAll('.nav-link-item');
+
+    function toggleMenu(open) {
+      if (open) {
+        sidePanel.classList.add('open');
+        menuOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      } else {
+        sidePanel.classList.remove('open');
+        menuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    menuToggle.addEventListener('click', () => toggleMenu(true));
+    closeBtn.addEventListener('click', () => toggleMenu(false));
+    menuOverlay.addEventListener('click', () => toggleMenu(false));
+
+    navLinkItems.forEach(link => {
+      link.addEventListener('click', () => toggleMenu(false));
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && sidePanel.classList.contains('open')) {
+        toggleMenu(false);
+      }
+    });
+  </script>
+</body>
+</html>
