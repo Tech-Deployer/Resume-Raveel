@@ -43,7 +43,6 @@
       position: relative;
       overflow-x: hidden;
 
-      /* Tech Blue and Cyan Dynamic Radial Gradient Background */
       background-image: 
         radial-gradient(circle at 20% 20%, rgba(0, 0, 0, 0.12) 0%, transparent 40%),
         radial-gradient(circle at 80% 70%, rgba(79, 172, 254, 0.15) 0%, transparent 50%),
@@ -54,7 +53,6 @@
       background-attachment: fixed;
     }
 
-    /* Animated Neon Scan Line Grid Overlay */
     body::before {
       content: '';
       position: fixed;
@@ -77,7 +75,6 @@
       font-family: 'JetBrains Mono', monospace;
     }
 
-    /* Fixed Tech Navigation Bar */
     nav {
       position: fixed;
       top: 0;
@@ -113,7 +110,6 @@
       -webkit-text-fill-color: transparent;
     }
 
-    /* Hexagonal Toggle Button */
     .menu-toggle {
       background: rgba(0, 242, 254, 0.1);
       border: 1px solid var(--cyan-primary);
@@ -142,7 +138,6 @@
       border-radius: 2px;
     }
 
-    /* Side Panel Navigation */
     .side-panel {
       position: fixed;
       top: 0;
@@ -224,7 +219,6 @@
       padding: 0 24px;
     }
 
-    /* Cut-Corner Glassmorphism Card */
     .tech-shape-card {
       background: var(--bg-card);
       border: 1px solid var(--card-border);
@@ -253,7 +247,6 @@
       background: var(--gradient-cyan);
     }
 
-    /* Hero Header Area */
     .hero-header {
       display: flex;
       align-items: center;
@@ -326,7 +319,6 @@
       line-height: 1.6;
     }
 
-    /* Contact Buttons */
     .contact-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -371,7 +363,6 @@
       font-size: 0.95rem;
     }
 
-    /* Section Header */
     .section-title {
       font-size: 1.35rem;
       font-weight: 700;
@@ -392,7 +383,6 @@
       box-shadow: 0 0 10px var(--cyan-primary);
     }
 
-    /* Skills Grid */
     .skills-image-grid, .edu-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -417,6 +407,7 @@
       height: 130px;
       object-fit: cover;
       filter: brightness(0.85);
+      background: rgba(3, 9, 30, 0.9);
     }
 
     .skill-feature-content {
@@ -433,7 +424,6 @@
       font-size: 0.82rem;
     }
 
-    /* Education Cards */
     .edu-card {
       background: rgba(3, 9, 30, 0.7);
       border: 1px solid var(--card-border);
@@ -453,7 +443,6 @@
       margin-bottom: 6px;
     }
 
-    /* Timeline */
     .timeline {
       position: relative;
       padding-left: 20px;
@@ -580,10 +569,11 @@
       <div class="hero-header">
         
         <div class="profile-avatar-container">
-          <img src="C:\Users\Malik\Desktop\Portfolio\Raveel picture.jpg"
+          <img src="/images/Raveel picture.jpg"
             alt="Muhammad Raveel Profile Picture" 
             class="profile-avatar"
             id="userProfileImg"
+            onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22140%22 height=%22140%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23081430%22/><text x=%2250%25%22 y=%2250%25%22 fill=%22%2300f2fe%22 font-size=%2214%22 text-anchor=%22middle%22 dy=%22.3em%22>MR</text></svg>';"
           >
         </div>
 
@@ -629,7 +619,7 @@
       
       <div class="skills-image-grid">
         <div class="skill-feature-card">
-          <img src="C:\Users\Malik\Desktop\Portfolio\Web Development Service.jpg?auto=format&fit=crop&w=600&q=80" alt="Web Development">
+          <img src="/images/Web Development Service.jpg" alt="Web Development" onerror="this.style.display='none';">
           <div class="skill-feature-content">
             <h4>Web Development</h4>
             <p>Building high-speed, modern, and responsive web platforms.</p>
@@ -637,7 +627,7 @@
         </div>
 
         <div class="skill-feature-card">
-          <img src="C:\Users\Malik\Desktop\Portfolio\System Optimization Service.jpg?auto=format&fit=crop&w=600&q=80" alt="Mobile App Development">
+          <img src="/images/System Optimization Service.jpg" alt="Mobile App Development" onerror="this.style.display='none';">
           <div class="skill-feature-content">
             <h4>Mobile App Development</h4>
             <p>Engineering cross-platform apps for mobile ecosystems.</p>
@@ -645,7 +635,7 @@
         </div>
 
         <div class="skill-feature-card">
-          <img src="C:\Users\Malik\Desktop\Portfolio\Resume Building Service.jpg?auto=format&fit=crop&w=600&q=80" alt="Portfolio Design">
+          <img src="/images/Resume Building Service.jpg" alt="Portfolio Design" onerror="this.style.display='none';">
           <div class="skill-feature-content">
             <h4>Portfolio & UI/UX Design</h4>
             <p>Creating dark-themed UI layouts and visual portfolios.</p>
@@ -653,7 +643,7 @@
         </div>
 
         <div class="skill-feature-card">
-          <img src="C:\Users\Malik\Desktop\Portfolio\Window Installation Service.jpg?auto=format&fit=crop&w=600&q=80" alt="Windows OS">
+          <img src="/images/Window Installation Service.jpg" alt="Windows OS" onerror="this.style.display='none';">
           <div class="skill-feature-content">
             <h4>Windows OS Configuration</h4>
             <p>Configuring operating systems and user environments.</p>
@@ -661,7 +651,7 @@
         </div>
 
         <div class="skill-feature-card">
-          <img src="C:\Users\Malik\Desktop\Portfolio\Software Installation Service.jpg?auto=format&fit=crop&w=600&q=80" alt="Software Troubleshooting">
+          <img src="/images/Software Installation Service.jpg" alt="Software Troubleshooting" onerror="this.style.display='none';">
           <div class="skill-feature-content">
             <h4>Software Troubleshooting</h4>
             <p>Resolving system errors, bugs, and software conflicts.</p>
@@ -669,7 +659,7 @@
         </div>
 
         <div class="skill-feature-card">
-          <img src="C:\Users\Malik\Desktop\Portfolio\Network Setup Service.jpg?auto=format&fit=crop&w=600&q=80" alt="Network Repair">
+          <img src="/images/Network Setup Service.jpg" alt="Network Repair" onerror="this.style.display='none';">
           <div class="skill-feature-content">
             <h4>Network Repair & Support</h4>
             <p>Monitoring routers, switches, and system connectivity.</p>
@@ -677,7 +667,7 @@
         </div>
 
         <div class="skill-feature-card">
-          <img src="C:\Users\Malik\Desktop\Portfolio\Hardware Installation Service.jpg?auto=format&fit=crop&w=600&q=80" alt="PC Hardware Components">
+          <img src="/images/Hardware Installation Service.jpg" alt="PC Hardware Components" onerror="this.style.display='none';">
           <div class="skill-feature-content">
             <h4>Hardware Maintenance</h4>
             <p>Diagnosing PC components, upgrades, and physical repairs.</p>
@@ -685,7 +675,7 @@
         </div>
 
         <div class="skill-feature-card">
-          <img src="C:\Users\Malik\Desktop\Portfolio\CCTV Installation Service.jpg?auto=format&fit=crop&w=600&q=80" alt="CCTV Systems">
+          <img src="/images/CCTV Installation Service.jpg" alt="CCTV Systems" onerror="this.style.display='none';">
           <div class="skill-feature-content">
             <h4>CCTV Systems & Control</h4>
             <p>Managing cybersecurity surveillance rooms, multi-screen monitoring, and NVR setups.</p>
@@ -693,7 +683,7 @@
         </div>
 
         <div class="skill-feature-card">
-          <img src="C:\Users\Malik\Desktop\Portfolio\Multimedia Installation Service.jpg?auto=format&fit=crop&w=600&q=80" alt="Audio-Visual Integration">
+          <img src="/images/Multimedia Installation Service.jpg" alt="Audio-Visual Integration" onerror="this.style.display='none';">
           <div class="skill-feature-content">
             <h4>Audio-Visual & Sound Systems</h4>
             <p>Integrating professional audio mixers, sound consoles, and AV equipment.</p>
